@@ -28,8 +28,17 @@ class MyApp extends StatelessWidget {
 class MyHomePage extends StatelessWidget {
   @override
 
-  Widget _container (Color color){
-
+  Widget _container (Color color, EdgeInsets margin ,icon){
+      return Container(
+                margin: margin,
+                height: 60.0,
+                width: 60.0,
+                decoration: new BoxDecoration(
+                  borderRadius: new BorderRadius.circular(50.0),
+                  color: color
+                ),
+                child: new Icon(icon, color: Colors.white,),
+              );
   }
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,15 +47,11 @@ class MyHomePage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             new Stack(
+              alignment: Alignment.center,
               children: <Widget>[
-                new Container(
-                height: 60.0,
-                width: 60.0,
-                decoration: new BoxDecoration(
-                  borderRadius: new BorderRadius.circular(50.0),
-                  color: Colors.orange
-                ),
-              )
+                _container(Colors.orange[200], EdgeInsets.only(right: 50.0) ,Icons.place,),
+                _container(Colors.orange[400], EdgeInsets.only(top:70.0), Icons.tag_faces,),
+                _container(Colors.orange[700], EdgeInsets.only(left:50.0), Icons.rate_review,),
               ],
             )
           ],
