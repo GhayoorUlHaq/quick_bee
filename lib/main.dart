@@ -26,15 +26,31 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatelessWidget {
-
   @override
+
+  Widget _container (Color color){
+
+  }
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(""),
-      ),
       body: Center(
-        
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            new Stack(
+              children: <Widget>[
+                new Container(
+                height: 60.0,
+                width: 60.0,
+                decoration: new BoxDecoration(
+                  borderRadius: new BorderRadius.circular(50.0),
+                  color: Colors.orange
+                ),
+              )
+              ],
+            )
+          ],
+        ),
       ),
     );
   }
