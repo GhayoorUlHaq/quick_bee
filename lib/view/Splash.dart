@@ -1,6 +1,24 @@
-import "package:flutter/material.dart";
+import 'dart:async';
 
-class Splash extends StatelessWidget {
+import "package:flutter/material.dart";
+import './Home.dart';
+
+class Splash extends StatefulWidget {
+  @override
+  _SplashState createState() => _SplashState();
+}
+
+class _SplashState extends State<Splash> {
+
+  void initState() {
+    super.initState();
+    Timer(
+        Duration(seconds: 3),
+        () => Navigator.of(context).pushReplacement(MaterialPageRoute(
+            builder: (BuildContext context) => Home())));
+  }
+
+
   Widget _container(Color color, EdgeInsets margin, icon) {
     return Container(
       margin: margin,

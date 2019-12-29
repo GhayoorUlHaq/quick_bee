@@ -1,13 +1,8 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 
-class Home extends StatefulWidget {
-  Home({Key key}) : super(key: key);
-
-  @override
-  _HomeState createState() => _HomeState();
-}
-
-class _HomeState extends State<Home> {
+class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -22,11 +17,57 @@ class _HomeState extends State<Home> {
   }
 }
 
-class HomeContent extends StatelessWidget {
+class HomeContent extends StatefulWidget {
   const HomeContent({Key key}) : super(key: key);
 
   @override
+  _HomeContentState createState() => _HomeContentState();
+}
+
+class _HomeContentState extends State<HomeContent> {
+  Widget _build_button(Color color, String title) {
+    return (new Container(
+      width: 120,
+      height: 40,
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(5),
+          color: color,
+          boxShadow: [
+            BoxShadow(
+              color: color,
+              blurRadius: 1.0, // has the effect of softening the shadow
+              spreadRadius: 0, // has the effect of extending the shadow
+              offset: Offset(
+                0.1, // horizontal, move right 10
+                0.1, // vertical, move down 10
+              ),
+            )
+          ]),
+      child: new Center(
+        child: new Text(
+          title,
+          style: TextStyle(color: Colors.white, fontSize: 15),
+        ),
+      ),
+    ));
+  }
+
+  Widget _buildImage(String image, double height, double width) {
+    return new Container(
+      child: new ClipRRect(
+        borderRadius: BorderRadius.circular(10.0),
+        child: Image.asset(
+          image,
+          height: height,
+          width: width,
+        ),
+      ),
+    );
+  }
+
+  @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
     return new ListView(
       children: <Widget>[
         new Container(
@@ -55,8 +96,8 @@ class HomeContent extends StatelessWidget {
                 child: Row(
                   children: <Widget>[
                     new Container(
-                      width: 100,
-                      height: 100,
+                      width: width * 0.25,
+                      height: width * 0.25,
                       decoration: new BoxDecoration(
                           borderRadius: new BorderRadius.circular(20.0),
                           color: Colors.red,
@@ -82,9 +123,62 @@ class HomeContent extends StatelessWidget {
                         ),
                       ),
                     ),
+                    new Container(
+                      margin: EdgeInsets.only(left: 5.0),
+                      height: width * 0.25,
+                      width: width * 0.68,
+                      child: new Column(
+                        children: <Widget>[
+                          new Container(
+                            margin: EdgeInsets.only(left: 5),
+                            child: new Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                _build_button(Colors.red[200], "Swiming"),
+                                _build_button(Colors.red[400], "Badminton"),
+                              ],
+                            ),
+                          ),
+                          new Container(
+                            margin: EdgeInsets.only(top: 5, left: 5),
+                            child: new Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                _build_button(Colors.red[400], "Football"),
+                                _build_button(Colors.red[200], "Circket"),
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
                   ],
                 ),
               ),
+              // 2nd row
+              new Container(
+                margin: EdgeInsets.only(top: 15),
+                height: 100,
+                width: width,
+                child: new Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    _buildImage("images/1.jpeg", 100, 150),
+                    _buildImage("images/2.jpg", 100, 170),
+                  ],
+                ),
+              ),
+              // 3rd row
+              new Container(
+                child: Column(
+                  children: <Widget>[
+                    new Center(
+                      child: _buildImage(
+                        'images/4.jpg', 350, 350),
+                    )
+                  ],
+                ),
+              )
             ],
           ),
         ),
